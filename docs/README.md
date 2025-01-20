@@ -1,15 +1,15 @@
 This README gives an overview of how to build and contribute to the
-documentation of Flink Table Store.
+documentation of Paimon.
 
-The documentation is included with the source of Flink Table Store in order to ensure
+The documentation is included with the source of Paimon in order to ensure
 that you always have docs corresponding to your checked-out version.
 
 # Requirements
 
 ### Build the site locally
 
-Make sure you have installed
-[Hugo](https://gohugo.io/getting-started/installing/) on your system.
+Make sure you have installed Hugo on your system.
+Note: An extended version of Hugo <= 0.124.1 is required. you can Find this at [Hugo](https://github.com/gohugoio/hugo/releases/tag/v0.124.1)
 
 From this directory:
 
@@ -85,7 +85,7 @@ the page:
 
 ### ShortCodes 
 
-Flink Table Store uses [shortcodes](https://gohugo.io/content-management/shortcodes/) to add
+Paimon uses [shortcodes](https://gohugo.io/content-management/shortcodes/) to add
 custom functionality to its documentation markdown.
 
 Its implementation and documentation can be found at

@@ -1,5 +1,5 @@
 ---
-title: Apache Flink Table Store
+title: Apache Paimon
 type: docs
 bookToc: false
 ---
@@ -22,36 +22,38 @@ specific language governing permissions and limitations
 under the License.
 -->
 
-# Apache Flink Table Store
+# Apache Paimon
 
-Flink Table Store is a unified streaming and batch store for building dynamic
-tables on Apache Flink. It is designed to be the best connector to Flink as
-the storage for streaming warehouse. It uses a full Log-Structured Merge-Tree
-(LSM) structure for high speed and large amount of data update & query capability.
+Apache Paimon is a lake format that enables building a Realtime Lakehouse Architecture with Flink and Spark 
+for both streaming and batch operations. Paimon innovatively combines lake format and LSM (Log-structured merge-tree) 
+structure, bringing realtime streaming updates into the lake architecture.
 
-Flink Table Store supports the following usage:
-- **Streaming Insert**: Write changelog streams, including CDC from database and streams.
-- **Batch Insert**: Write batch data as offline warehouse, including OVERWRITE support.
-- **Batch/OLAP Query**: Read snapshot of the storage, efficient querying of real-time data.
-- **Streaming Query**: Read changes of the storage, ensure exactly-once consistency.
+Paimon offers the following core capabilities:
+
+- Realtime updates:
+  - Primary key table supports writing of large-scale updates, has very high update performance, typically through Flink Streaming.
+  - Support defining Merge Engines, update records however you like. Deduplicate to keep last row, or partial-update, or aggregate records, or first-row, you decide.
+  - Support defining changelog-producer, produce correct and complete changelog in updates for merge engines, simplifying your streaming analytics.
+- Huge Append Data Processing:
+  - Append table (no primary-key) provides large scale batch & streaming processing capability. Automatic Small File Merge.
+  - Supports Data Compaction with z-order sorting to optimize file layout, provides fast queries based on data skipping using indexes such as minmax.
+- Data Lake Capabilities: 
+  - Scalable metadata: supports storing Petabyte large-scale datasets and storing a large number of partitions.
+  - Supports ACID Transactions & Time Travel & Schema Evolution.
 
 {{< columns >}}
-## Try Table Store
 
-If you’re interested in playing around with Flink Table Store, check out our
-[Quickstart]({{< ref "docs/try-table-store/quick-start" >}}). It provides a step by
+## Try Paimon
+
+If you’re interested in playing around with Paimon, check out our
+quick start guide with [Flink]({{< ref "flink/quick-start" >}}) or [Spark]({{< ref "spark/quick-start" >}}). It provides a step by
 step introduction to the APIs and guides you through real applications.
 
 <--->
 
-## Get Help with Table Store
+## Get Help with Paimon
 
-If you get stuck, check out our [community support
-resources](https://flink.apache.org/community.html). In particular, Apache
-Flink’s user mailing list is consistently ranked as one of the most active of
-any Apache project, and is a great way to get help quickly.
+If you get stuck, you can subscribe User Mailing List (user-subscribe@paimon.apache.org),
+Paimon tracks issues in GitHub and prefers to receive contributions as pull requests. You can also create an issue.
 
 {{< /columns >}}
-
-Flink Table Store is developed under the umbrella of
-[Apache Flink](https://flink.apache.org/).

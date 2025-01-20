@@ -74,7 +74,7 @@ This file is based on the checkstyle file of Apache Beam.
 	-->
 
 	<module name="FileLength">
-		<property name="max" value="3000"/>
+		<property name="max" value="4000"/>
 	</module>
 
 	<!-- All Java AST specific tests live under TreeWalker module. -->
@@ -118,6 +118,13 @@ This file is based on the checkstyle file of Apache Beam.
 
 		-->
 
+		<!-- forbid use of org.jetbrains.annotations.Nullable validate -->
+		<module name="Regexp">
+			<property name="format" value="org\.jetbrains\.annotations\.Nullable"/>
+			<property name="illegalPattern" value="true"/>
+			<property name="message"
+					  value="Use javax.annotation.Nullable instead of org.jetbrains.annotations.Nullable."/>
+		</module>
 		<!-- forbid use of commons lang validate -->
 		<module name="Regexp">
 			<property name="format" value="org\.apache\.commons\.lang3\.Validate"/>
@@ -131,6 +138,12 @@ This file is based on the checkstyle file of Apache Beam.
 			<property name="illegalPattern" value="true"/>
 			<property name="message"
 					  value="Use Flink's Preconditions instead of Guava's Preconditions"/>
+		</module>
+		<module name="Regexp">
+			<property name="format" value="org\.apache\.hadoop\.shaded"/>
+			<property name="illegalPattern" value="true"/>
+			<property name="message"
+				value="Use Paimon's shade instead of hadoop's shade"/>
 		</module>
 		<!-- forbid the use of com.google.common.annotations.VisibleForTesting -->
 		<module name="Regexp">
@@ -169,6 +182,13 @@ This file is based on the checkstyle file of Apache Beam.
 			<property name="illegalPattern" value="true"/>
 			<property name="message" value="Use com.fasterxml.jackson instead of jettison."/>
 		</module>
+		<!-- forbid the use of flink.shaded.guava31.com.google.common -->
+		<module name="Regexp">
+			<property name="format" value="import static org\.apache\.flink\.shaded\.guava31\.com\.google\.common\.base\.Preconditions"/>
+			<property name="illegalPattern" value="true"/>
+			<property name="message"
+					  value="Use Paimon's Preconditions instead of Guava's Preconditions"/>
+		</module>
 
 		<!-- Enforce Java-style array declarations -->
 		<module name="ArrayTypeStyle"/>
@@ -195,7 +215,7 @@ This file is based on the checkstyle file of Apache Beam.
 			<!-- Checks for out of order import statements. -->
 			<property name="severity" value="error"/>
 			<property name="groups"
-					  value="org.apache.flink,org.apache.flink.shaded,*,javax,java,scala"/>
+					  value="org.apache.paimon,org.apache.paimon.shade,*,javax,java,scala"/>
 			<property name="separated" value="true"/>
 			<property name="sortStaticImportsAlphabetically" value="true"/>
 			<property name="option" value="bottom"/>
@@ -214,19 +234,23 @@ This file is based on the checkstyle file of Apache Beam.
 		</module>
 		<module name="IllegalImport">
 			<property name="illegalPkgs" value="org.codehaus.jackson"/>
-			<message key="import.illegal" value="{0}; Use flink-shaded-jackson instead."/>
+			<message key="import.illegal" value="{0}; Use paimon-shade-jackson instead."/>
 		</module>
 		<module name="IllegalImport">
-			<property name="illegalPkgs" value="org.objectweb.asm"/>
-			<message key="import.illegal" value="{0}; Use flink-shaded-asm instead."/>
-		</module>
-		<module name="IllegalImport">
-			<property name="illegalPkgs" value="io.netty"/>
-			<message key="import.illegal" value="{0}; Use flink-shaded-netty instead."/>
+			<property name="illegalPkgs" value="com.fasterxml.jackson"/>
+			<message key="import.illegal" value="{0}; Use paimon-shade-jackson instead."/>
 		</module>
 		<module name="IllegalImport">
 			<property name="illegalPkgs" value="com.google.common"/>
-			<message key="import.illegal" value="{0}; Use flink-shaded-guava instead."/>
+			<message key="import.illegal" value="{0}; Use paimon-shade-guava instead."/>
+		</module>
+		<module name="IllegalImport">
+			<property name="illegalPkgs" value="com.github.ben-manes.caffeine"/>
+			<message key="import.illegal" value="{0}; Use paimon-shade-caffeine instead."/>
+		</module>
+		<module name="IllegalImport">
+			<property name="illegalPkgs" value="io.netty"/>
+			<message key="import.illegal" value="{0}; Use paimon-shade-netty instead."/>
 		</module>
 
 		<module name="RedundantModifier">

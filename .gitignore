@@ -1,6 +1,8 @@
 .cache
 .classpath
-.idea
+.idea/*
+!.idea/vcs.xml
+!.idea/icon.png
 .metadata
 .settings
 .project
@@ -10,9 +12,10 @@ target
 *.iml
 *.swp
 *.jar
-*.zip
 *.log
 *.pyc
 .DS_Store
 *.ipr
 *.iws
+.java-version
+dependency-reduced-pom.xml
